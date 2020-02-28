@@ -41,7 +41,7 @@
             "otherEntityName": "productCategory",
             "otherEntityRelationshipName": "product",
             "relationshipName": "productCategory",
-            "otherEntityField": "id"
+            "otherEntityField": "name"
         }
     ],
     "changelogDate": "20200226053600",
@@ -54,5 +54,7 @@
     "fluentMethods": true,
     "readOnly": false,
     "clientRootFolder": "",
-    "applications": "*"
+    "applications": [
+        "store"
+    ]
 }

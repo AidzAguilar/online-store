@@ -29,7 +29,7 @@
     "clientFramework": "angularX",
     "clientTheme": "none",
     "clientThemeVariant": "",
-    "creationTimestamp": 1582685637687,
+    "creationTimestamp": 1582880760884,
     "testFrameworks": ["protractor"],
     "jhiPrefix": "jhi",
     "entitySuffix": "",
@@ -38,6 +38,10 @@
     "enableTranslation": true,
     "nativeLanguage": "en",
     "languages": ["en", "zh-tw"],
-    "blueprints": []
-  }
+    "blueprints": [],
+    "skipClient": false,
+    "skipServer": false,
+    "skipUserManagement": false
+  },
+  "entities": ["Customer", "Invoice", "OrderItem", "Product", "ProductCategory", "ProductOrder", "Shipment"]
 }
