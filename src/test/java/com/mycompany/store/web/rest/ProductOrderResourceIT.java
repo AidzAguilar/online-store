@@ -15,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
@@ -232,6 +233,7 @@ public class ProductOrderResourceIT {
 
     @Test
     @Transactional
+    @WithMockUser(username="admin", authorities={"ROLE_ADMIN"},  password = "admin")
     public void getAllProductOrders() throws Exception {
         // Initialize the database
         productOrderRepository.saveAndFlush(productOrder);
@@ -245,9 +247,10 @@ public class ProductOrderResourceIT {
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
             .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE)));
     }
-    
+
     @Test
     @Transactional
+    @WithMockUser(username="admin", authorities={"ROLE_ADMIN"},  password = "admin")
     public void getProductOrder() throws Exception {
         // Initialize the database
         productOrderRepository.saveAndFlush(productOrder);
@@ -264,6 +267,7 @@ public class ProductOrderResourceIT {
 
     @Test
     @Transactional
+    @WithMockUser(username="admin", authorities={"ROLE_ADMIN"},  password = "admin")
     public void getNonExistingProductOrder() throws Exception {
         // Get the productOrder
         restProductOrderMockMvc.perform(get("/api/product-orders/{id}", Long.MAX_VALUE))

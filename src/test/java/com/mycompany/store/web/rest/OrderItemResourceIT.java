@@ -16,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
@@ -265,9 +266,10 @@ public class OrderItemResourceIT {
             .andExpect(jsonPath("$.[*].totalPrice").value(hasItem(DEFAULT_TOTAL_PRICE.intValue())))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
     }
-    
+
     @Test
     @Transactional
+    @WithMockUser(username="admin", authorities={"ROLE_ADMIN"},  password = "admin")
     public void getOrderItem() throws Exception {
         // Initialize the database
         orderItemRepository.saveAndFlush(orderItem);
@@ -284,6 +286,7 @@ public class OrderItemResourceIT {
 
     @Test
     @Transactional
+    @WithMockUser(username="admin", authorities={"ROLE_ADMIN"},  password = "admin")
     public void getNonExistingOrderItem() throws Exception {
         // Get the orderItem
         restOrderItemMockMvc.perform(get("/api/order-items/{id}", Long.MAX_VALUE))
