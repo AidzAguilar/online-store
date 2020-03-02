@@ -37,7 +37,7 @@
     "otherModules": [],
     "enableTranslation": true,
     "nativeLanguage": "en",
-    "languages": ["en", "zh-tw"],
+    "languages": ["en", "zh-tw", "ta"],
     "blueprints": [],
     "skipClient": false,
     "skipServer": false,
